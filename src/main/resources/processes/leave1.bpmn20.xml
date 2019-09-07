@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
+  <process id="leave1" name="请假流程" isExecutable="true" isClosed="false" processType="None">
+    <sequenceFlow id="start-submitRequest" sourceRef="start" targetRef="submitRequest"></sequenceFlow>
+    <sequenceFlow id="submitRequest-manger" sourceRef="submitRequest" targetRef="manger"></sequenceFlow>
+    <sequenceFlow id="manger-agree_choose" sourceRef="manger" targetRef="agree_choose"></sequenceFlow>
+    <sequenceFlow id="agree_choose-end" sourceRef="agree_choose" targetRef="end"></sequenceFlow>
+    <sequenceFlow id="agree_choose-back_change" sourceRef="agree_choose" targetRef="back_change"></sequenceFlow>
+    <sequenceFlow id="back_change-manger" sourceRef="back_change" targetRef="manger"></sequenceFlow>
+    <startEvent id="start" name="开始申请"></startEvent>
+    <userTask id="submitRequest" name="提交申请" activiti:assignee="0${applyUser}"></userTask>
+    <userTask id="manger" name="主管审批" activiti:assignee="${manger}"></userTask>
+    <exclusiveGateway id="agree_choose" name="是否同意"></exclusiveGateway>
+    <userTask id="back_change" name="重新申请" activiti:assignee="${applyUser}"></userTask>
+    <endEvent id="end" name="结束"></endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_leave1">
+    <bpmndi:BPMNPlane bpmnElement="leave1" id="BPMNPlane_leave1">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="45.0" y="15.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="submitRequest" id="BPMNShape_submitRequest">
+        <omgdc:Bounds height="44.0" width="104.0" x="154.0" y="13.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="manger" id="BPMNShape_manger">
+        <omgdc:Bounds height="76.0" width="86.0" x="351.0" y="12.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="agree_choose" id="BPMNShape_agree_choose">
+        <omgdc:Bounds height="40.0" width="40.0" x="378.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="back_change" id="BPMNShape_back_change">
+        <omgdc:Bounds height="77.0" width="76.0" x="650.0" y="82.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="35.0" width="35.0" x="383.0" y="327.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="start-submitRequest" id="BPMNEdge_start-submitRequest">
+        <omgdi:waypoint x="80.0" y="32.0"></omgdi:waypoint>
+        <omgdi:waypoint x="154.0" y="35.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="submitRequest-manger" id="BPMNEdge_submitRequest-manger">
+        <omgdi:waypoint x="258.0" y="35.0"></omgdi:waypoint>
+        <omgdi:waypoint x="351.0" y="50.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="manger-agree_choose" id="BPMNEdge_manger-agree_choose">
+        <omgdi:waypoint x="394.0" y="88.0"></omgdi:waypoint>
+        <omgdi:waypoint x="398.0" y="190.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="agree_choose-end" id="BPMNEdge_agree_choose-end">
+        <omgdi:waypoint x="398.0" y="230.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="327.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="agree_choose-back_change" id="BPMNEdge_agree_choose-back_change">
+        <omgdi:waypoint x="398.0" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="688.0" y="159.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="back_change-manger" id="BPMNEdge_back_change-manger">
+        <omgdi:waypoint x="650.0" y="120.0"></omgdi:waypoint>
+        <omgdi:waypoint x="394.0" y="88.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
